@@ -19,3 +19,15 @@ after_success:
   - docker push lukaszkos/multi-worker
   - docker push lukaszkos/multi-nginx
   - docker push lukaszkos/multi-server
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-390256316421"
+  bucket_path: "multi-docker"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  on:
+      branch: master
